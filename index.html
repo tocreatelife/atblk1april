@@ -12,6 +12,7 @@
             --text: #495057;
             --soft-gray: #e9ecef;
             --border: #dee2e6;
+            --neutral: #adb5bd;
         }
 
         body {
@@ -66,10 +67,22 @@
         }
 
         .code-digit.filled {
+            border-color: var(--neutral);
+            background: var(--neutral);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .code-digit.error {
             border-color: var(--primary);
             background: var(--primary);
             color: white;
-            transform: scale(1.05);
+        }
+
+        .code-digit.success {
+            border-color: var(--success);
+            background: var(--success);
+            color: white;
         }
 
         .buttons {
@@ -193,20 +206,23 @@
                 `;
                 
                 codeDigits.forEach(digit => {
-                    digit.style.background = 'var(--success)';
-                    digit.style.borderColor = 'var(--success)';
-                    digit.style.boxShadow = '0 0 15px rgba(76, 175, 80, 0.3)';
+                    digit.classList.remove('error');
+                    digit.classList.add('success');
                 });
                 
             } else {
                 statusElement.innerHTML = '<div class="error">Неверная комбинация! Сброс...</div>';
+                codeDigits.forEach(digit => {
+                    digit.classList.remove('success');
+                    digit.classList.add('error');
+                });
+
                 setTimeout(() => {
                     userInput = [];
                     updateDisplay();
                     statusElement.textContent = '';
                     codeDigits.forEach(digit => {
-                        digit.style.background = '';
-                        digit.style.boxShadow = '';
+                        digit.classList.remove('error');
                     });
                 }, 1500);
             }
