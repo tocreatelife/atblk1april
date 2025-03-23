@@ -1,32 +1,150 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Взлом кодового замка</title>
+    <title>Откройте кодовый замок</title>
     <style>
-        .container { text-align: center; margin-top: 50px; }
-        button { padding: 15px; margin: 5px; cursor: pointer; }
-        #status { font-size: 20px; margin-top: 20px; }
+        :root {
+            --primary: #4CAF50;
+            --error: #f44336;
+            --bg: #1a1a1a;
+            --text: #ffffff;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        h1 {
+            color: var(--primary);
+            margin-bottom: 2rem;
+            font-size: 2.5em;
+            text-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
+        }
+
+        .code-display {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        .code-digit {
+            width: 50px;
+            height: 50px;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            transition: all 0.3s ease;
+            background: rgba(76, 175, 80, 0.1);
+        }
+
+        .code-digit.filled {
+            background: var(--primary);
+            transform: scale(1.1);
+            box-shadow: 0 0 15px var(--primary);
+        }
+
+        .buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        button {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            background: linear-gradient(145deg, #434343, #2d2d2d);
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        #status {
+            margin-top: 2rem;
+            font-size: 1.2em;
+            min-height: 24px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .success {
+            color: var(--primary) !important;
+            opacity: 1 !important;
+        }
+
+        .error {
+            color: var(--error) !important;
+            opacity: 1 !important;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        .shake {
+            animation: shake 0.4s ease;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Комбинация: 3x вправо, 2x влево</h2>
-        <div id="currentInput">_ _ _ _ _</div>
-        <button onclick="addToInput('0')">Вправо (0)</button>
-        <button onclick="addToInput('1')">Влево (1)</button>
+        <h1>Откройте кодовый замок</h1>
+        <div class="code-display" id="codeDisplay">
+            <div class="code-digit"></div>
+            <div class="code-digit"></div>
+            <div class="code-digit"></div>
+            <div class="code-digit"></div>
+            <div class="code-digit"></div>
+        </div>
+        <div class="buttons">
+            <button onclick="addToInput('0')">Вправо (0)</button>
+            <button onclick="addToInput('1')">Влево (1)</button>
+        </div>
         <p id="status"></p>
     </div>
 
     <script>
         let userInput = [];
-        const CORRECT_CODE = "00011"; // Правильный ответ
+        const CORRECT_CODE = "00011";
+        const codeDigits = document.querySelectorAll('.code-digit');
+        const statusElement = document.getElementById('status');
 
         function addToInput(value) {
             if (userInput.length < 5) {
                 userInput.push(value);
                 updateDisplay();
                 
-                // Автопроверка после 5 символов
                 if (userInput.length === 5) {
                     checkCode();
                 }
@@ -34,26 +152,39 @@
         }
 
         function updateDisplay() {
-            let display = userInput.join(' ').padEnd(9, ' _'); // Формат: "0 0 0 _ _"
-            document.getElementById("currentInput").textContent = display;
+            codeDigits.forEach((digit, index) => {
+                digit.textContent = userInput[index] || '';
+                digit.classList.toggle('filled', userInput[index] !== undefined);
+            });
         }
 
         function checkCode() {
             const userCode = userInput.join('');
-            const statusElement = document.getElementById("status");
             
             if (userCode === CORRECT_CODE) {
-                statusElement.textContent = "✅ Замок открыт!";
-                statusElement.style.color = "green";
+                statusElement.textContent = "Замок открыт!";
+                statusElement.classList.add('success');
+                statusElement.classList.remove('error', 'shake');
+                
+                // Анимация победы
+                codeDigits.forEach(digit => {
+                    digit.style.animation = 'celebrate 0.5s ease';
+                });
             } else {
-                statusElement.textContent = "❌ Ошибка! Сброс...";
-                statusElement.style.color = "red";
-                // Сброс через 1 секунду
+                statusElement.textContent = "Неверный код! Сброс...";
+                statusElement.classList.add('error', 'shake');
+                statusElement.classList.remove('success');
+                
+                // Анимация ошибки
+                codeDisplay.classList.add('shake');
+                
                 setTimeout(() => {
                     userInput = [];
                     updateDisplay();
-                    statusElement.textContent = "";
-                }, 1000);
+                    statusElement.textContent = '';
+                    statusElement.classList.remove('error', 'shake');
+                    codeDisplay.classList.remove('shake');
+                }, 1500);
             }
         }
     </script>
