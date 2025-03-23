@@ -143,12 +143,8 @@
             <div class="code-digit"></div>
         </div>
         <div class="buttons">
-            <button onclick="addToInput('→')">
-                <span class="arrow">→</span> Вправо
-            </button>
-            <button onclick="addToInput('←')">
-                <span class="arrow">←</span> Влево
-            </button>
+            <button onclick="addToInput('←')">Влево</button>
+            <button onclick="addToInput('→')">Вправо</button>
         </div>
         <p id="status"></p>
     </div>
@@ -190,8 +186,8 @@
                 `;
                 
                 codeDigits.forEach(digit => {
-                    digit.style.background = var(--success);
-                    digit.style.borderColor = var(--success);
+                    digit.style.background = 'var(--success)';
+                    digit.style.borderColor = 'var(--success)';
                     digit.style.boxShadow = '0 0 15px rgba(76, 175, 80, 0.3)';
                 });
                 
