@@ -63,23 +63,14 @@
             font-size: 1.4em;
             transition: all 0.3s ease;
             background: white;
-            color: white; /* Белый цвет стрелочек */
+            color: var(--text);
         }
 
         .code-digit.filled {
             border-color: var(--neutral);
-            background: var(--neutral);
-            transform: scale(1); /* Убрано увеличение */
-        }
-
-        .code-digit.error {
-            border-color: var(--primary);
-            background: var(--primary);
-        }
-
-        .code-digit.success {
-            border-color: var(--success);
-            background: var(--success);
+            background: var(--soft-gray);
+            color: white;
+            transform: scale(1.05);
         }
 
         .buttons {
@@ -106,6 +97,7 @@
         button:hover {
             background: var(--primary);
             color: white;
+            transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(255, 87, 34, 0.2);
         }
 
@@ -202,23 +194,20 @@
                 `;
                 
                 codeDigits.forEach(digit => {
-                    digit.classList.remove('error');
-                    digit.classList.add('success');
+                    digit.style.background = 'var(--success)';
+                    digit.style.borderColor = 'var(--success)';
+                    digit.style.boxShadow = '0 0 15px rgba(76, 175, 80, 0.3)';
                 });
                 
             } else {
                 statusElement.innerHTML = '<div class="error">Неверная комбинация! Сброс...</div>';
-                codeDigits.forEach(digit => {
-                    digit.classList.remove('success');
-                    digit.classList.add('error');
-                });
-
                 setTimeout(() => {
                     userInput = [];
                     updateDisplay();
                     statusElement.textContent = '';
                     codeDigits.forEach(digit => {
-                        digit.classList.remove('error');
+                        digit.style.background = '';
+                        digit.style.boxShadow = '';
                     });
                 }, 1500);
             }
