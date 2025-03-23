@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Взлом кодового замка</title>
+    <style>
+        .container { text-align: center; margin-top: 50px; }
+        button { padding: 15px; margin: 5px; cursor: pointer; }
+        #status { font-size: 20px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Комбинация: 3x вправо, 2x влево</h2>
+        <div id="currentInput">_ _ _ _ _</div>
+        <button onclick="addToInput('0')">Вправо (0)</button>
+        <button onclick="addToInput('1')">Влево (1)</button>
+        <p id="status"></p>
+    </div>
+
+    <script>
+        let userInput = [];
+        const CORRECT_CODE = "00011"; // Правильный ответ
+
+        function addToInput(value) {
+            if (userInput.length < 5) {
+                userInput.push(value);
+                updateDisplay();
+                
+                // Автопроверка после 5 символов
+                if (userInput.length === 5) {
+                    checkCode();
+                }
+            }
+        }
+
+        function updateDisplay() {
+            let display = userInput.join(' ').padEnd(9, ' _'); // Формат: "0 0 0 _ _"
+            document.getElementById("currentInput").textContent = display;
+        }
+
+        function checkCode() {
+            const userCode = userInput.join('');
+            const statusElement = document.getElementById("status");
+            
+            if (userCode === CORRECT_CODE) {
+                statusElement.textContent = "✅ Замок открыт!";
+                statusElement.style.color = "green";
+            } else {
+                statusElement.textContent = "❌ Ошибка! Сброс...";
+                statusElement.style.color = "red";
+                // Сброс через 1 секунду
+                setTimeout(() => {
+                    userInput = [];
+                    updateDisplay();
+                    statusElement.textContent = "";
+                }, 1000);
+            }
+        }
+    </script>
+</body>
+</html>
