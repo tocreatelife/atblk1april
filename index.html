@@ -7,144 +7,147 @@
         :root {
             --primary: #FF5722;
             --success: #4CAF50;
-            --error: #F44336;
-            --bg: #f8f9fa;
-            --text: #495057;
-            --soft-gray: #e9ecef;
-            --border: #dee2e6;
             --neutral: #adb5bd;
+            --text: #2c3e50;
+            --bg: #f8f9fa;
+            --soft-gray: #e9ecef;
+            --border-radius: 12px;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
 
         body {
             background: var(--bg);
             color: var(--text);
             font-family: 'Arial', sans-serif;
+            margin: 0;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 15px;
         }
 
         .container {
-            text-align: center;
-            padding: 2rem;
             background: white;
-            border-radius: 16px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            padding: 2.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
             max-width: 500px;
-            width: 100%;
+            width: 90%;
+            text-align: center;
         }
 
         h1 {
             color: var(--primary);
-            margin-bottom: 1.5rem;
-            font-size: clamp(1.5rem, 5vw, 2.2rem);
+            margin-bottom: 2rem;
+            font-size: 2.2em;
             font-weight: 600;
         }
 
         .code-display {
             display: flex;
-            gap: 0.8rem;
+            gap: 12px;
             justify-content: center;
             margin: 2rem 0;
-            flex-wrap: wrap;
         }
 
         .code-digit {
-            width: 45px;
-            height: 45px;
+            width: 55px;
+            height: 55px;
             border: 2px solid var(--soft-gray);
-            border-radius: 10px;
+            border-radius: var(--border-radius);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.4em;
-            transition: all 0.3s ease;
-            background: white;
+            font-size: 1.5em;
             color: var(--text);
+            background: white;
+            transition: all 0.3s ease;
         }
 
         .code-digit.filled {
+            background: var(--neutral);
             border-color: var(--neutral);
-            background: var(--soft-gray);
-            color: gray;
-            transform: scale(1.05);
+            color: white;
         }
 
         .code-digit.error {
-            border-color: var(--primary) !important;
-            background: var(--primary) !important;
-            color: white !important;
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
         }
 
         .code-digit.success {
-            border-color: var(--success) !important;
-            background: var(--success) !important;
-            color: white !important;
+            background: var(--success);
+            border-color: var(--success);
+            color: white;
         }
 
         .buttons {
             display: flex;
             gap: 1rem;
             justify-content: center;
-            width: 100%;
-            max-width: 300px;
-            margin: 0 auto;
+            margin-top: 1.5rem;
         }
 
         button {
-            padding: 15px 25px;
+            padding: 14px 28px;
             border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1.1em;
-            transition: all 0.3s ease;
+            border-radius: var(--border-radius);
             background: var(--soft-gray);
             color: var(--text);
-            flex: 1;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 500;
         }
 
         button:hover {
             background: var(--primary);
             color: white;
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 87, 34, 0.2);
+            box-shadow: 0 4px 15px rgba(255, 87, 34, 0.3);
         }
 
         #status {
-            margin-top: 1.5rem;
+            margin-top: 2rem;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            text-align: center;
             font-size: 1.1em;
-            min-height: 60px;
             line-height: 1.6;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
         }
 
         .success {
-            color: var(--success) !important;
-            padding: 15px;
             background: rgba(76, 175, 80, 0.1);
-            border-radius: 8px;
-            border: 1px solid var(--success);
+            color: var(--success);
+            border-color: var(--success);
         }
 
         .error {
-            color: var(--error) !important;
+            background: rgba(244, 67, 54, 0.1);
+            color: var(--error);
+            border-color: var(--error);
         }
 
         .hint {
             font-size: 0.9em;
+            margin-top: 1rem;
             color: #666;
-            margin-top: 10px;
         }
 
         @media (max-width: 480px) {
-            .code-digit {
-                width: 40px;
-                height: 40px;
-                font-size: 1.2em;
+            .container {
+                padding: 1.5rem;
             }
-            
+
+            .code-digit {
+                width: 45px;
+                height: 45px;
+                font-size: 1.3em;
+            }
+
             button {
                 padding: 12px 20px;
                 font-size: 1em;
@@ -155,7 +158,7 @@
 <body>
     <div class="container">
         <h1>Откройте кодовый замок</h1>
-        <div class="code-display" id="codeDisplay">
+        <div class="code-display">
             <div class="code-digit"></div>
             <div class="code-digit"></div>
             <div class="code-digit"></div>
@@ -163,66 +166,62 @@
             <div class="code-digit"></div>
         </div>
         <div class="buttons">
-            <button onclick="addToInput('←')">Влево</button>
-            <button onclick="addToInput('→')">Вправо</button>
+            <button onclick="addInput('←')">Влево</button>
+            <button onclick="addInput('→')">Вправо</button>
         </div>
-        <p id="status"></p>
+        <div id="status"></div>
     </div>
 
     <script>
-        let userInput = [];
-        const CORRECT_CODE = "→→→←←";
-        const codeDigits = document.querySelectorAll('.code-digit');
-        const statusElement = document.getElementById('status');
+        let combination = [];
+        const SOLUTION = '→→→←←';
+        const digits = document.querySelectorAll('.code-digit');
+        const status = document.getElementById('status');
 
-        function addToInput(value) {
-            if (userInput.length < 5) {
-                userInput.push(value);
-                updateDisplay();
-                
-                if (userInput.length === 5) {
-                    checkCode();
-                }
-            }
+        function addInput(direction) {
+            if (combination.length >= 5) return;
+            
+            combination.push(direction);
+            updateDisplay();
+            
+            if (combination.length === 5) checkSolution();
         }
 
         function updateDisplay() {
-            codeDigits.forEach((digit, index) => {
-                digit.textContent = userInput[index] || '';
-                digit.classList.toggle('filled', userInput[index] !== undefined);
+            digits.forEach((digit, index) => {
+                digit.textContent = combination[index] || '';
+                digit.className = 'code-digit' + 
+                    (combination[index] ? ' filled' : '');
             });
         }
 
-        function checkCode() {
-            const userCode = userInput.join('');
+        function checkSolution() {
+            const attempt = combination.join('');
             
-            if (userCode === CORRECT_CODE) {
-                statusElement.innerHTML = `
+            if (attempt === SOLUTION) {
+                digits.forEach(d => d.classList.add('success'));
+                status.innerHTML = `
                     <div class="success">
                         <div>Замок открыт!</div>
-                        <div class="hint">Подсказка для следующего этапа:<br>откройте ящик стола, который никогда не открывается…
+                        <div class="hint">Подсказка для следующего этапа:<br>
+                            откройте ящик стола, который никогда не открывается…
                         </div>
                     </div>
                 `;
-                
-                codeDigits.forEach(digit => {
-                    digit.style.background = 'var(--success)';
-                    digit.style.borderColor = 'var(--success)';
-                    digit.style.boxShadow = '0 0 15px rgba(76, 175, 80, 0.3)';
-                });
-                
             } else {
-                statusElement.innerHTML = '<div class="error">Неверная комбинация! Сброс...</div>';
-                setTimeout(() => {
-                    userInput = [];
-                    updateDisplay();
-                    statusElement.textContent = '';
-                    codeDigits.forEach(digit => {
-                        digit.style.background = '';
-                        digit.style.boxShadow = '';
-                    });
-                }, 1500);
+                digits.forEach(d => d.classList.add('error'));
+                status.innerHTML = '<div class="error">Неверная комбинация! Сброс...</div>';
+                setTimeout(resetLock, 1500);
             }
+        }
+
+        function resetLock() {
+            combination = [];
+            status.innerHTML = '';
+            digits.forEach(d => {
+                d.classList.remove('error', 'success');
+                d.textContent = '';
+            });
         }
     </script>
 </body>
