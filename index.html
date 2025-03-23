@@ -2,10 +2,11 @@
 <html>
 <head>
     <title>Откройте кодовый замок</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         :root {
             --primary: #FF5722;
-            --secondary: #FF9800;
+            --success: #4CAF50;
             --error: #F44336;
             --bg: #f5f5f5;
             --text: #333333;
@@ -20,7 +21,7 @@
             align-items: center;
             min-height: 100vh;
             margin: 0;
-            transition: background 0.3s;
+            padding: 15px;
         }
 
         .container {
@@ -30,41 +31,32 @@
             border-radius: 16px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
             max-width: 500px;
-            width: 90%;
+            width: 100%;
         }
 
         h1 {
             color: var(--primary);
             margin-bottom: 1.5rem;
-            font-size: 2.2em;
-            position: relative;
-        }
-
-        h1::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 3px;
-            background: var(--secondary);
-            margin: 10px auto;
+            font-size: clamp(1.5rem, 5vw, 2.2rem);
         }
 
         .code-display {
             display: flex;
-            gap: 1rem;
+            gap: 0.8rem;
             justify-content: center;
             margin: 2rem 0;
+            flex-wrap: wrap;
         }
 
         .code-digit {
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             border: 2px solid var(--primary);
-            border-radius: 12px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5em;
+            font-size: 1.4em;
             transition: all 0.3s ease;
             background: rgba(255, 87, 34, 0.1);
         }
@@ -73,28 +65,27 @@
             background: var(--primary);
             color: white;
             transform: scale(1.05);
-            box-shadow: 0 4px 15px rgba(255, 87, 34, 0.3);
         }
 
         .buttons {
             display: flex;
             gap: 1rem;
             justify-content: center;
-            flex-wrap: wrap;
+            flex-direction: column;
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
         }
 
         button {
-            padding: 12px 24px;
+            padding: 15px 25px;
             border: none;
             border-radius: 8px;
             cursor: pointer;
             font-size: 1.1em;
             transition: all 0.3s ease;
-            background: linear-gradient(145deg, var(--primary), var(--secondary));
+            background: linear-gradient(145deg, #FF5722, #FF9800);
             color: white;
-            display: flex;
-            align-items: center;
-            gap: 8px;
         }
 
         button:hover {
@@ -110,7 +101,11 @@
         }
 
         .success {
-            color: var(--primary) !important;
+            color: var(--success) !important;
+            padding: 15px;
+            background: rgba(76, 175, 80, 0.1);
+            border-radius: 8px;
+            border: 1px solid var(--success);
         }
 
         .error {
@@ -123,18 +118,17 @@
             margin-top: 10px;
         }
 
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-8px); }
-            75% { transform: translateX(8px); }
-        }
-
-        .shake {
-            animation: shake 0.4s ease;
-        }
-
-        .arrow {
-            font-size: 1.3em;
+        @media (max-width: 480px) {
+            .code-digit {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2em;
+            }
+            
+            button {
+                padding: 12px 20px;
+                font-size: 1em;
+            }
         }
     </style>
 </head>
@@ -149,12 +143,8 @@
             <div class="code-digit"></div>
         </div>
         <div class="buttons">
-            <button onclick="addToInput('→')">
-                <span class="arrow">→</span> Вправо
-            </button>
-            <button onclick="addToInput('←')">
-                <span class="arrow">←</span> Влево
-            </button>
+            <button onclick="addToInput('←')">Влево</button>
+            <button onclick="addToInput('→')">Вправо</button>
         </div>
         <p id="status"></p>
     </div>
@@ -188,21 +178,28 @@
             
             if (userCode === CORRECT_CODE) {
                 statusElement.innerHTML = `
-                    <div class="success">Замок открыт!</div>
-                    <div class="hint">Подсказка для следующего этапа:<br>откройте ящик стола, который никогда не открывается…
+                    <div class="success">
+                        <div>Замок открыт!</div>
+                        <div class="hint">Подсказка для следующего этапа:<br>откройте ящик стола, который никогда не открывается…
+                        </div>
                     </div>
                 `;
+                
                 codeDigits.forEach(digit => {
-                    digit.style.background = 'linear-gradient(145deg, #FF5722, #FF9800)';
+                    digit.style.background = var(--success);
+                    digit.style.borderColor = var(--success);
+                    digit.style.boxShadow = '0 0 15px rgba(76, 175, 80, 0.3)';
                 });
+                
             } else {
-                statusElement.innerHTML = '<div class="error shake">Неверная комбинация! Сброс...</div>';
+                statusElement.innerHTML = '<div class="error">Неверная комбинация! Сброс...</div>';
                 setTimeout(() => {
                     userInput = [];
                     updateDisplay();
                     statusElement.textContent = '';
                     codeDigits.forEach(digit => {
                         digit.style.background = '';
+                        digit.style.boxShadow = '';
                     });
                 }, 1500);
             }
