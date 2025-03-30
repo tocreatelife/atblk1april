@@ -78,7 +78,7 @@ function createAds() {
   const maxActiveAds = 3; // Максимальное количество одновременно активных баннеров
 
   function createNewAd() {
-    if (activeAds >= maxActiveAds) return;
+    if (activeAds >= maxActiveAds || closedAds >= adTexts.length) return;
 
     const text = adTexts[Math.floor(Math.random() * adTexts.length)];
     const ad = document.createElement("div");
@@ -111,11 +111,11 @@ function createAds() {
     container.appendChild(ad);
     activeAds++;
 
-    // Добавляем случайное движение
+    // Добавляем случайное движение с увеличенной скоростью
     let x = left;
     let y = top;
-    let dx = (Math.random() - 0.5) * 2;
-    let dy = (Math.random() - 0.5) * 2;
+    let dx = (Math.random() - 0.5) * 4; // Увеличиваем скорость движения
+    let dy = (Math.random() - 0.5) * 4; // Увеличиваем скорость движения
 
     function moveAd() {
       x += dx;
