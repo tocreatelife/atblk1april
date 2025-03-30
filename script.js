@@ -11,19 +11,6 @@ function nextPage(currentPage) {
   }
 }
 
-// Функция подтверждения выполнения задания
-function confirmTask(pageNumber) {
-  const confirmButton = document.querySelector(
-    `#page${pageNumber}Result button:first-of-type`
-  );
-  const nextButton = document.getElementById(`nextPage${pageNumber}`);
-
-  // Скрываем кнопку подтверждения
-  confirmButton.classList.add("hidden");
-  // Показываем кнопку перехода на следующую страницу
-  nextButton.classList.remove("hidden");
-}
-
 // Проверка ввода числа π
 function checkPi() {
   const input = document.getElementById("piInput").value;
