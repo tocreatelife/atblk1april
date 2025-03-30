@@ -1,0 +1,47 @@
+function printDocument() {
+  // Открываем новое окно с мемом
+  const printWindow = window.open("", "_blank");
+  printWindow.document.write(`
+        <html>
+            <head>
+                <title>Документ для печати</title>
+                <style>
+                    body {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                        height: 100vh;
+                        margin: 0;
+                        font-family: Arial, sans-serif;
+                    }
+                    img {
+                        max-width: 100%;
+                        height: auto;
+                    }
+                    h1 {
+                        text-align: center;
+                        color: #1a73e8;
+                    }
+                </style>
+            </head>
+            <body>
+                <h1>Почти у цели!</h1>
+                <img src="https://i.kym-cdn.com/entries/icons/original/000/018/012/this_is_fine.jpeg" alt="Nicolas Cage">
+            </body>
+        </html>
+    `);
+  printWindow.document.close();
+  printWindow.print();
+
+  // Показываем секцию с криком
+  document.getElementById("shout-section").classList.remove("hidden");
+}
+
+function confirmShout() {
+  const result = document.getElementById("qr4-result");
+  result.classList.remove("hidden");
+
+  const qr5Link = document.getElementById("qr5-link");
+  qr5Link.innerHTML = `<a href="qr5.html">Перейти к QR-коду 5</a>`;
+}
