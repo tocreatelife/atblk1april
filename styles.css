@@ -58,10 +58,20 @@ button {
     cursor: pointer;
     font-size: 1.1rem;
     transition: background-color 0.3s;
+    margin: 0.5rem;
 }
 
 button:hover {
     background-color: var(--atb-secondary);
+}
+
+/* Стили для кнопки подтверждения */
+button:first-of-type {
+    background-color: var(--atb-accent);
+}
+
+button:first-of-type:hover {
+    background-color: #e68a00;
 }
 
 input {
@@ -107,15 +117,30 @@ input {
     position: relative;
     min-height: 200px;
     margin: 2rem 0;
+    overflow: hidden;
 }
 
 .ad {
     position: absolute;
-    background: white;
-    padding: 1rem;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(45deg, #ff0000, #ff6b6b);
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
     cursor: pointer;
+    animation: pulse 2s infinite;
+    border: 3px solid #fff;
+    color: white;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    min-width: 200px;
+    text-align: center;
+}
+
+.ad p {
+    margin: 0;
+    font-size: 1.2rem;
+    line-height: 1.4;
 }
 
 .ad .close {
@@ -123,7 +148,35 @@ input {
     top: 5px;
     right: 5px;
     cursor: pointer;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    transition: background-color 0.3s;
+}
+
+.ad .close:hover {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 30px rgba(255, 0, 0, 0.5);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+    }
 }
 
 iframe {

@@ -15,7 +15,8 @@
             <button onclick="checkPi()">Проверить</button>
             <div id="piResult" class="hidden">
                 <p>Поздравляем! Вы ввели... неправильный код. Но мы вас любим, поэтому вот новая ссылка →</p>
-                <button onclick="nextPage(1)">Перейти дальше</button>
+                <button onclick="confirmTask(1)">Я выполнил задание</button>
+                <button onclick="nextPage(1)" class="hidden" id="nextPage1">Перейти дальше</button>
             </div>
         </div>
 
@@ -25,7 +26,8 @@
             <div id="timer">У вас 2 минуты!</div>
             <div id="page2Result" class="hidden">
                 <p>Миссия провалена. Шутка. Переходите дальше →</p>
-                <button onclick="nextPage(2)">Перейти дальше</button>
+                <button onclick="confirmTask(2)">Я выполнил задание</button>
+                <button onclick="nextPage(2)" class="hidden" id="nextPage2">Перейти дальше</button>
             </div>
         </div>
 
@@ -34,7 +36,8 @@
             <p>ВНИМАНИЕ: Съешьте ложку горчицы/соли, чтобы доказать лояльность компании. Иначе доступ закрыт!</p>
             <div id="page3Result" class="hidden">
                 <p>Вы – герой! Но это была проверка на доверие. Вот следующий код →</p>
-                <button onclick="nextPage(3)">Перейти дальше</button>
+                <button onclick="confirmTask(3)">Я выполнил задание</button>
+                <button onclick="nextPage(3)" class="hidden" id="nextPage3">Перейти дальше</button>
             </div>
         </div>
 
@@ -44,7 +47,8 @@
             <img src="images/nikolas.jpg" alt="Nicolas Cage" class="meme">
             <div id="page4Result" class="hidden">
                 <p>Ваш энтузиазм впечатлил HR. Переходите →</p>
-                <button onclick="nextPage(4)">Перейти дальше</button>
+                <button onclick="confirmTask(4)">Я выполнил задание</button>
+                <button onclick="nextPage(4)" class="hidden" id="nextPage4">Перейти дальше</button>
             </div>
         </div>
 
@@ -54,7 +58,8 @@
             <p class="alternative">Если стесняетесь → Можно станцевать ламбаду вместо пения!</p>
             <div id="page5Result" class="hidden">
                 <p>Бонусы за креативность начислены! Следующий шаг →</p>
-                <button onclick="nextPage(5)">Перейти дальше</button>
+                <button onclick="confirmTask(5)">Я выполнил задание</button>
+                <button onclick="nextPage(5)" class="hidden" id="nextPage5">Перейти дальше</button>
             </div>
         </div>
 
@@ -65,7 +70,8 @@
             <div id="page6Result" class="hidden">
                 <img src="images/terminator-thumb.jpg" alt="Terminator" class="terminator">
                 <p>Вы спасили мир! SKYNET побежден! Ваш финальный код →</p>
-                <button onclick="nextPage(6)">Перейти дальше</button>
+                <button onclick="confirmTask(6)">Я выполнил задание</button>
+                <button onclick="nextPage(6)" class="hidden" id="nextPage6">Перейти дальше</button>
             </div>
         </div>
 

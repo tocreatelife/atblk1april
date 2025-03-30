@@ -11,6 +11,19 @@ function nextPage(currentPage) {
   }
 }
 
+// Функция подтверждения выполнения задания
+function confirmTask(pageNumber) {
+  const confirmButton = document.querySelector(
+    `#page${pageNumber}Result button:first-of-type`
+  );
+  const nextButton = document.getElementById(`nextPage${pageNumber}`);
+
+  // Скрываем кнопку подтверждения
+  confirmButton.classList.add("hidden");
+  // Показываем кнопку перехода на следующую страницу
+  nextButton.classList.remove("hidden");
+}
+
 // Проверка ввода числа π
 function checkPi() {
   const input = document.getElementById("piInput").value;
@@ -20,7 +33,7 @@ function checkPi() {
 
 // Таймер для страницы 2
 function startTimer() {
-  let timeLeft = 120; // 2 минуты в секундах
+  let timeLeft = 10; // 2 минуты в секундах
   const timerElement = document.getElementById("timer");
   const result = document.getElementById("page2Result");
 
@@ -53,32 +66,72 @@ function createAds() {
   ];
 
   let closedAds = 0;
+  let activeAds = 0;
+  const maxActiveAds = 3; // Максимальное количество одновременно активных баннеров
 
-  adTexts.forEach((text, index) => {
+  function createNewAd() {
+    if (activeAds >= maxActiveAds) return;
+
+    const text = adTexts[Math.floor(Math.random() * adTexts.length)];
     const ad = document.createElement("div");
     ad.className = "ad";
-    ad.style.left = `${Math.random() * 70}%`;
-    ad.style.top = `${Math.random() * 70}%`;
-    ad.style.zIndex = index + 1;
+
+    // Случайное позиционирование
+    const left = Math.random() * (container.offsetWidth - 200);
+    const top = Math.random() * (container.offsetHeight - 100);
+    ad.style.left = `${left}px`;
+    ad.style.top = `${top}px`;
+    ad.style.zIndex = 1000 + activeAds;
 
     const closeBtn = document.createElement("span");
     closeBtn.className = "close";
     closeBtn.innerHTML = "×";
     closeBtn.onclick = () => {
       ad.remove();
+      activeAds--;
       closedAds++;
       if (closedAds === adTexts.length) {
         document.getElementById("page6Result").classList.remove("hidden");
+      } else {
+        // Создаем новый баннер взамен закрытого
+        setTimeout(createNewAd, 500);
       }
     };
 
     ad.innerHTML = `
-            ${closeBtn.outerHTML}
-            <p>${text}</p>
-        `;
+      ${closeBtn.outerHTML}
+      <p>${text}</p>
+    `;
 
     container.appendChild(ad);
-  });
+    activeAds++;
+
+    // Добавляем случайное движение
+    let x = left;
+    let y = top;
+    let dx = (Math.random() - 0.5) * 2;
+    let dy = (Math.random() - 0.5) * 2;
+
+    function moveAd() {
+      x += dx;
+      y += dy;
+
+      // Отскок от границ
+      if (x <= 0 || x >= container.offsetWidth - 200) dx *= -1;
+      if (y <= 0 || y >= container.offsetHeight - 100) dy *= -1;
+
+      ad.style.left = `${x}px`;
+      ad.style.top = `${y}px`;
+      requestAnimationFrame(moveAd);
+    }
+
+    moveAd();
+  }
+
+  // Создаем начальные баннеры
+  for (let i = 0; i < maxActiveAds; i++) {
+    setTimeout(createNewAd, i * 500);
+  }
 }
 
 // Автоматическое отображение результатов для страниц 3-5
