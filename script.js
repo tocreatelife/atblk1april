@@ -11,6 +11,19 @@ function nextPage(currentPage) {
   }
 }
 
+// Функция подтверждения выполнения задания
+function confirmTask(pageNumber) {
+  const confirmButton = document.querySelector(
+    `#page${pageNumber}Result button:first-of-type`
+  );
+  const successDiv = document.getElementById(`page${pageNumber}Success`);
+
+  // Скрываем кнопку подтверждения
+  confirmButton.classList.add("hidden");
+  // Показываем сообщение об успехе и кнопку далее
+  successDiv.classList.remove("hidden");
+}
+
 // Проверка ввода числа π
 function checkPi() {
   const input = document.getElementById("piInput").value;
@@ -70,10 +83,12 @@ function createAds() {
     ad.style.top = `${top}px`;
     ad.style.zIndex = 1000 + activeAds;
 
-    const closeBtn = document.createElement("span");
-    closeBtn.className = "close";
-    closeBtn.innerHTML = "×";
-    closeBtn.onclick = () => {
+    ad.innerHTML = `
+      <p>${text}</p>
+    `;
+
+    // Добавляем обработчик клика на весь баннер
+    ad.onclick = () => {
       ad.remove();
       activeAds--;
       closedAds++;
@@ -84,11 +99,6 @@ function createAds() {
         setTimeout(createNewAd, 500);
       }
     };
-
-    ad.innerHTML = `
-      ${closeBtn.outerHTML}
-      <p>${text}</p>
-    `;
 
     container.appendChild(ad);
     activeAds++;

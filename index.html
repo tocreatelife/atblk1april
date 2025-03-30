@@ -33,8 +33,11 @@
             <h1>Задание 3</h1>
             <p>ВНИМАНИЕ: Съешьте ложку горчицы/соли, чтобы доказать лояльность компании. Иначе доступ закрыт!</p>
             <div id="page3Result" class="hidden">
-                <p>Вы – герой! Но это была проверка на доверие. Вот следующий код →</p>
-                <button onclick="nextPage(3)">Далее</button>
+                <button onclick="confirmTask(3)">Я съел</button>
+                <div id="page3Success" class="hidden">
+                    <p>Вы – герой! Но это была проверка на доверие. Вот следующий код →</p>
+                    <button onclick="nextPage(3)">Далее</button>
+                </div>
             </div>
         </div>
 
@@ -43,8 +46,11 @@
             <p>Распечатайте этот файл и крикните: «Я люблю работу!»</p>
             <img src="images/nikolas.jpg" alt="Nicolas Cage" class="meme">
             <div id="page4Result" class="hidden">
-                <p>Ваш энтузиазм впечатлил HR. Переходите →</p>
-                <button onclick="nextPage(4)">Далее</button>
+                <button onclick="confirmTask(4)">Я сделал</button>
+                <div id="page4Success" class="hidden">
+                    <p>Ваш энтузиазм впечатлил HR. Переходите →</p>
+                    <button onclick="nextPage(4)">Далее</button>
+                </div>
             </div>
         </div>
 
@@ -53,8 +59,11 @@
             <p>Спойте гимн компании в караоке-стиле. Видеодоказательство – начальнику в WhatsApp!</p>
             <p class="alternative">Если стесняетесь → Можно станцевать ламбаду вместо пения!</p>
             <div id="page5Result" class="hidden">
-                <p>Бонусы за креативность начислены! Следующий шаг →</p>
-                <button onclick="nextPage(5)">Далее</button>
+                <button onclick="confirmTask(5)">Я сделал</button>
+                <div id="page5Success" class="hidden">
+                    <p>Бонусы за креативность начислены! Следующий шаг →</p>
+                    <button onclick="nextPage(5)">Далее</button>
+                </div>
             </div>
         </div>
 
