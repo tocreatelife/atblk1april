@@ -3,3 +3,7 @@ function confirmEating() {
   result.classList.remove("hidden");
   result.classList.add("fade-in");
 }
+
+function nextStep() {
+    window.location.href = 'step4.html';
+}

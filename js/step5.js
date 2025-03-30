@@ -3,3 +3,7 @@ function confirmPerformance() {
   result.classList.remove("hidden");
   result.classList.add("fade-in");
 }
+
+function nextStep() {
+    window.location.href = 'step6.html';
+}

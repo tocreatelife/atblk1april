@@ -43,3 +43,11 @@ function confirmShout() {
   result.classList.remove("hidden");
   result.classList.add("fade-in");
 }
+
+function checkPrint() {
+    const result = document.getElementById('step4-result');
+    result.classList.remove('hidden');
+    setTimeout(() => {
+        window.location.href = 'step5.html';
+    }, 2000);
+}

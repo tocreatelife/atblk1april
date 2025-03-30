@@ -31,3 +31,11 @@ function showResult() {
   result.classList.remove("hidden");
   result.classList.add("fade-in");
 }
+
+function checkDuck() {
+  const result = document.getElementById("step2-result");
+  result.classList.remove("hidden");
+  setTimeout(() => {
+    window.location.href = "step3.html";
+  }, 2000);
+}

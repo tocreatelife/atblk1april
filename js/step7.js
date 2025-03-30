@@ -46,3 +46,9 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
+function finishQuest() {
+    const result = document.getElementById('final-result');
+    result.classList.remove('hidden');
+    // Здесь можно добавить финальную анимацию или действие
+}

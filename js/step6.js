@@ -36,3 +36,18 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
+function startHacking() {
+    const progressBar = document.getElementById('progress-bar');
+    const result = document.getElementById('hack-result');
+    
+    // Показываем прогресс
+    progressBar.style.width = '100%';
+    
+    setTimeout(() => {
+        result.classList.remove('hidden');
+        setTimeout(() => {
+            window.location.href = 'step7.html';
+        }, 2000);
+    }, 3000);
+}
