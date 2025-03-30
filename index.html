@@ -3,28 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Первоапрельский Квест</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
+    <title>ATB Квест 1 апреля</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <div id="step1" class="step-section fade-in">
-            <img src="images/atb-logo.png" alt="ATB Logo" style="max-width: 200px; margin-bottom: 2rem;">
-            <h2>Шаг 1: Проверка на внимательность</h2>
-            <div class="task">
-                <p>Чтобы получить доступ к следующей подсказке, введите код: число π (пи) до десятого знака</p>
-                <input type="text" id="pi-input" placeholder="Введите число π" class="input-field">
-                <button onclick="checkPi()" class="next-button">Проверить</button>
-            </div>
-            <div id="step1-result" class="result hidden">
-                <p>Поздравляем! Вы ввели... неправильный код. Но мы вас любим, поэтому вот следующий шаг →</p>
-                <a href="pages/step2.html" class="next-button">Перейти к шагу 2</a>
+        <div id="page1" class="page active">
+            <h1>Задание 1</h1>
+            <p>Чтобы получить доступ к следующей подсказке, введите код: число π (пи) до десятого знака</p>
+            <input type="text" id="piInput" placeholder="Введите число π">
+            <button onclick="checkPi()">Проверить</button>
+            <div id="piResult" class="hidden">
+                <p>Поздравляем! Вы ввели... неправильный код. Но мы вас любим, поэтому вот новая ссылка →</p>
+                <button onclick="nextPage(1)">Перейти дальше</button>
             </div>
         </div>
+
+        <div id="page2" class="page hidden">
+            <h1>Задание 2</h1>
+            <p>Срочно! Сфоткайте свою лучшую «уточку» из макарон и отправьте в рабочий чат. Это часть миссии!</p>
+            <div id="timer">У вас 2 минуты!</div>
+            <div id="page2Result" class="hidden">
+                <p>Миссия провалена. Шутка. Переходите дальше →</p>
+                <button onclick="nextPage(2)">Перейти дальше</button>
+            </div>
+        </div>
+
+        <div id="page3" class="page hidden">
+            <h1>Задание 3</h1>
+            <p>ВНИМАНИЕ: Съешьте ложку горчицы/соли, чтобы доказать лояльность компании. Иначе доступ закрыт!</p>
+            <div id="page3Result" class="hidden">
+                <p>Вы – герой! Но это была проверка на доверие. Вот следующий код →</p>
+                <button onclick="nextPage(3)">Перейти дальше</button>
+            </div>
+        </div>
+
+        <div id="page4" class="page hidden">
+            <h1>Задание 4</h1>
+            <p>Распечатайте этот файл и крикните: «Я люблю работу!»</p>
+            <img src="images/nikolas.jpg" alt="Nicolas Cage" class="meme">
+            <div id="page4Result" class="hidden">
+                <p>Ваш энтузиазм впечатлил HR. Переходите →</p>
+                <button onclick="nextPage(4)">Перейти дальше</button>
+            </div>
+        </div>
+
+        <div id="page5" class="page hidden">
+            <h1>Задание 5</h1>
+            <p>Спойте гимн компании в караоке-стиле. Видеодоказательство – начальнику в WhatsApp!</p>
+            <p class="alternative">Если стесняетесь → Можно станцевать ламбаду вместо пения!</p>
+            <div id="page5Result" class="hidden">
+                <p>Бонусы за креативность начислены! Следующий шаг →</p>
+                <button onclick="nextPage(5)">Перейти дальше</button>
+            </div>
+        </div>
+
+        <div id="page6" class="page hidden">
+            <h1>Задание 6</h1>
+            <p>О, нет! Вирус SKYNET вырвался на свободу!</p>
+            <div id="ads-container"></div>
+            <div id="page6Result" class="hidden">
+                <img src="images/terminator-thumb.jpg" alt="Terminator" class="terminator">
+                <p>Вы спасили мир! SKYNET побежден! Ваш финальный код →</p>
+                <button onclick="nextPage(6)">Перейти дальше</button>
+            </div>
+        </div>
+
+        <div id="page7" class="page hidden">
+            <h1>Финальная страница</h1>
+            <p>Поздравляем! Вы прошли квест... и стали жертвой 1 апреля!</p>
+            <p>Ваш приз – вечная слава и этот круассан 🥐</p>
+            <iframe src="https://rutube.ru/play/embed/your-video-id" frameborder="0" allowfullscreen></iframe>
+        </div>
     </div>
-    <script src="js/script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html> 
