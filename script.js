@@ -20,8 +20,16 @@ function confirmTask(pageNumber) {
 
   // Скрываем кнопку подтверждения
   confirmButton.classList.add("hidden");
-  // Показываем сообщение об успехе и кнопку далее
-  successDiv.classList.remove("hidden");
+
+  // Для страницы 3 сразу показываем сообщение об успехе
+  if (pageNumber === 3) {
+    successDiv.classList.remove("hidden");
+  } else {
+    // Для остальных страниц показываем сообщение об успехе с задержкой
+    setTimeout(() => {
+      successDiv.classList.remove("hidden");
+    }, 1000);
+  }
 }
 
 // Проверка ввода числа π
