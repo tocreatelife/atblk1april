@@ -1,11 +1,12 @@
 function checkPi() {
-  const input = document.getElementById("pi-input").value;
-  const result = document.getElementById("qr1-result");
+  const piInput = document.getElementById("pi-input");
+  const result = document.getElementById("step1-result");
 
-  // Показываем результат независимо от введенного значения
+  // Показываем результат в любом случае (так как по условию мы пропускаем дальше в любом случае)
   result.classList.remove("hidden");
 
-  // Создаем QR-код для следующего этапа
-  const qr2Link = document.getElementById("qr2-link");
-  qr2Link.innerHTML = `<a href="qr2.html">Перейти к QR-коду 2</a>`;
+  // Плавное появление результата
+  setTimeout(() => {
+    result.style.opacity = "1";
+  }, 100);
 }
