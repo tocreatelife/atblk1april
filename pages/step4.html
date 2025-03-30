@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Шаг 4 - Распечатка</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div id="step4" class="step-section fade-in">
+            <img src="../images/atb-logo.png" alt="ATB Logo" style="max-width: 200px; margin-bottom: 2rem;">
+            <h2>Шаг 4: Распечатка</h2>
+            <div class="task">
+                <p>Распечатайте этот файл и крикните: «Я люблю работу!»</p>
+                <button onclick="printDocument()" class="next-button">Распечатать документ</button>
+                <div id="shout-section" class="hidden">
+                    <p>Теперь крикните: «Я люблю работу!»</p>
+                    <button onclick="confirmShout()" class="next-button">Я крикнул!</button>
+                </div>
+            </div>
+            <div id="step4-result" class="result hidden">
+                <p>Ваш энтузиазм впечатлил HR. Переходите →</p>
+                <a href="step5.html" class="next-button">Перейти к шагу 5</a>
+            </div>
+        </div>
+    </div>
+    <script src="../js/step4.js"></script>
+</body>
+</html> 

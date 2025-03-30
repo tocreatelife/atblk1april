@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Шаг 3 - Проверка на доверие</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div id="step3" class="step-section fade-in">
+            <img src="../images/atb-logo.png" alt="ATB Logo" style="max-width: 200px; margin-bottom: 2rem;">
+            <h2>Шаг 3: Проверка на доверие</h2>
+            <div class="task">
+                <p>ВНИМАНИЕ: Съешьте ложку горчицы/соли, чтобы доказать лояльность компании. Иначе доступ закрыт!</p>
+                <div class="warning">
+                    <p>⚠️ Это важное задание!</p>
+                </div>
+                <button onclick="confirmEating()" class="next-button">Я съел!</button>
+            </div>
+            <div id="step3-result" class="result hidden">
+                <p>Вы – герой! Но это была проверка на доверие. Вот следующий шаг →</p>
+                <a href="step4.html" class="next-button">Перейти к шагу 4</a>
+            </div>
+        </div>
+    </div>
+    <script src="../js/step3.js"></script>
+</body>
+</html> 

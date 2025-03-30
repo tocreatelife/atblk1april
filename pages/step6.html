@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Шаг 6 - SKYNET</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div id="step6" class="step-section fade-in">
+            <img src="images/atb-logo.png" alt="ATB Logo" style="max-width: 200px; margin-bottom: 2rem;">
+            <h2>⚠️ ВНИМАНИЕ: ОБНАРУЖЕН ВИРУС SKYNET ⚠️</h2>
+            <div class="task">
+                <p style="color: red; font-weight: bold;">SKYNET пытается захватить ваш телефон рекламой 18+! Быстро закройте все рекламные баннеры!</p>
+                
+                <div class="virus-container">
+                    <div class="ad-banner" id="ad1">
+                        <button class="close-button" onclick="closeAd(1)">✕</button>
+                        <p>🔞 Горячая реклама 1</p>
+                    </div>
+                    <div class="ad-banner" id="ad2">
+                        <button class="close-button" onclick="closeAd(2)">✕</button>
+                        <p>🔞 Горячая реклама 2</p>
+                    </div>
+                    <div class="ad-banner" id="ad3">
+                        <button class="close-button" onclick="closeAd(3)">✕</button>
+                        <p>🔞 Горячая реклама 3</p>
+                    </div>
+                    <div class="ad-banner" id="ad4">
+                        <button class="close-button" onclick="closeAd(4)">✕</button>
+                        <p>🔞 Горячая реклама 4</p>
+                    </div>
+                    <div class="ad-banner" id="ad5">
+                        <button class="close-button" onclick="closeAd(5)">✕</button>
+                        <p>🔞 Горячая реклама 5</p>
+                    </div>
+                    <div class="ad-banner" id="ad6">
+                        <button class="close-button" onclick="closeAd(6)">✕</button>
+                        <p>🔞 Горячая реклама 6</p>
+                    </div>
+                </div>
+            </div>
+            <div id="step6-result" class="result hidden">
+                <img src="images/terminator-thumb.jpg" alt="Terminator Thumbs Up" class="terminator-image">
+                <p>Вы спасли свой телефон от SKYNET! →</p>
+                <a href="step7.html" class="next-button">Перейти к финальному шагу</a>
+            </div>
+        </div>
+    </div>
+    <script src="js/step6.js"></script>
+</body>
+</html> 
