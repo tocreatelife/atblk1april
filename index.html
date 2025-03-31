@@ -10,11 +10,12 @@
     <div class="container">
         <div id="page1" class="page active">
             <h1>Задание 1</h1>
+            <p>Хочу сыграть с тобой в игру!</p>
             <p>Чтобы получить доступ к следующей подсказке, введите код: число π (пи) до десятого знака</p>
             <input type="text" id="piInput" placeholder="Введите число π">
             <button onclick="checkPi()">Проверить</button>
             <div id="piResult" class="hidden">
-                <p>Поздравляем! Вы ввели... неправильный код. Но мы вас любим, поэтому вот новая ссылка →</p>
+                <p>Поздравляем! Вы ввели... неправильный код. Но я вас все равно люблю, поэтому вот новая ссылка →</p>
                 <button onclick="nextPage(1)">Далее</button>
             </div>
         </div>
@@ -43,7 +44,7 @@
 
         <div id="page4" class="page hidden">
             <h1>Задание 4</h1>
-            <p>Распечатайте этот файл и крикните: «Я люблю работу!»</p>
+            <p>Распечатайте этот файл или крикните: «Я люблю работу!»</p>
             <img src="images/nikolas.jpg" alt="Nicolas Cage" class="meme">
             <div id="page4Result" class="hidden">
                 <button onclick="confirmTask(4)">Я сделал</button>
@@ -70,6 +71,7 @@
         <div id="page6" class="page hidden">
             <h1>Задание 6</h1>
             <p>О, нет! Вирус SKYNET вырвался на свободу!</p>
+            <p>Скорее нажимайте на банеры, чтобы их закрыть!!!</p>
             <div id="ads-container"></div>
             <div id="page6Result" class="hidden">
                 <img src="images/terminator-thumb.jpg" alt="Terminator" class="terminator">
